@@ -61,6 +61,9 @@ class FaceDetector():
             
 #! Main function
 def main():
+    width = 1180
+    height = 720
+    dim = (width,height)
     cap = cv2.VideoCapture("your video path")
     # cap = cv2.VideoCapture(0) # live cam
     pTime = 0
@@ -79,7 +82,9 @@ def main():
         pTime = cTime
         cv2.putText(img, f'FPS: {int(fps)}', (20,70), cv2.FONT_HERSHEY_PLAIN, 3, (255,0,0), 2)
 
-        cv2.imshow("Image", img)
+        #* Resized image
+        resized = cv2.resize(img, dim, interpolation=cv2.INTER_AREA)
+        cv2.imshow("Image", resized)
     
         if cv2.waitKey(20) & 0xFF == ord('q'):
             break
