@@ -61,7 +61,7 @@ class FaceDetector():
             
 #! Main function
 def main():
-    cap = cv2.VideoCapture("videos/2.mp4")
+    cap = cv2.VideoCapture("your video path")
     # cap = cv2.VideoCapture(0) # live cam
     pTime = 0
 
