@@ -17,7 +17,7 @@ def main():
 
     while True:
         success, img = cap.read()
-        img, faces = detector.findFaceMesh(img)
+        img, faces = detector.findFaceMesh(img, drawIds=True)
 
         #* Final image output
         cv2.imshow('Image', img)
