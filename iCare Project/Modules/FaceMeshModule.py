@@ -37,7 +37,7 @@ class FaceMeshDetector():
                     if drawIds:
                         cv2.putText(img, str(id), (x, y), cv2.FONT_HERSHEY_PLAIN, 0.3, (255,0,0), 1) # id's of the dots are visible on the output now
 
-                    face.append([x, y])
+                    face.append([id, x, y])
             
                 faces.append(face)
 
