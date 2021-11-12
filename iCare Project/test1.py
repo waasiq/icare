@@ -20,7 +20,7 @@ def main():
         success, img = cap.read()
         img, faces = detector.findFaceMesh(img)
         
-        idList1 = faces[0][216]
+        idList1 = faces[0][216] #? testing coordinates 216-96
         idList2 = faces[0][96]
         # print("id: {} x: {} y: {}".format(idList1[0], idList1[1], idList1[2]))
         cv2.circle(img, (idList1[1], idList1[2]), 3, (0,255,0), 2, cv2.FILLED)
