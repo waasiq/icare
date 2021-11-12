@@ -18,7 +18,7 @@ class FaceMeshDetector():
         self.mpDraw = mp.solutions.drawing_utils
         self.mpFaceMesh = mp.solutions.face_mesh
         self.faceMesh = self.mpFaceMesh.FaceMesh(self.staticMode, self.maxFaces, self.refine_landmarks, self.minDetectionConf, self.minTrackConf) # max face num for now
-        self.drawSpec = self.mpDraw.DrawingSpec(color=(255,0,255),thickness=1, circle_radius=1) # drawing settings
+        self.drawSpec = self.mpDraw.DrawingSpec(color=(255,0,0),thickness=1, circle_radius=1) # drawing settings
 
     #! Face mesh finding
     def findFaceMesh(self, img, draw=True, drawIds=False):
@@ -35,7 +35,7 @@ class FaceMeshDetector():
                     imageHeight, imageWidth, imageChannel = img.shape
                     x, y = int(landmark.x * imageWidth), int(landmark.y * imageHeight)
                     if drawIds:
-                        cv2.putText(img, str(id), (x, y), cv2.FONT_HERSHEY_PLAIN, 0.3, (255,0,0), 1) # id's of the dots are visible on the output now
+                        cv2.putText(img, str(id), (x, y), cv2.FONT_HERSHEY_PLAIN, 0.4, (255,0,0), 1) # id's of the dots are visible on the output now
 
                     face.append([id, x, y])
             
