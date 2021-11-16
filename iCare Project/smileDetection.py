@@ -1,11 +1,11 @@
 """
-! Smile Detection Module
+!                                               -----   Smile Detection Module  -----
 
 TODO Ideas and Problems:
     * Organising the code.   --> DONE
     * Program can't detect until user reaches a certain distance to the camera. 
         -> Path 1:
-            - Adding a rectangle in the output image. User must be within those rectangle limits.
+            - Adding a rectangle in the output image. User must be within those rectangle limits. 
             - If user is not inside the rectangle, don't calculate.
         -> Path 2:
             - Detecting real-time distance using a depth/distance detection module or algorithm.
