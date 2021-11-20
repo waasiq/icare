@@ -10,6 +10,7 @@ TODO Ideas and Problems:
         -> Path 2:
             - Detecting real-time distance using a depth/distance detection module or algorithm.
     * When a new face enters the frame or face exits the frame, program shuts down. Need to fix.
+    * Maybe when asking for coordinates, user can enter directly to the function arguments.
     * (mention other problems...)
 
 """

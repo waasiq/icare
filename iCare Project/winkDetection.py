@@ -2,8 +2,8 @@
 !                                               -----   Wink Detection Module  -----
 
 TODO Ideas and Problems:
-    * 
-
+    * Maybe when asking for coordinates, user can enter directly to the function arguments.
+    * (mention other problems...)
 """
 
 import cv2
