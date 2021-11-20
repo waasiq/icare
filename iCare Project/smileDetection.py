@@ -46,14 +46,14 @@ def smilingPoints(img, faces):
     cv2.circle(img, (right_idList2[1], right_idList2[2]), 3, (0,255,0), 2 , cv2.FILLED)
 
     #* Calculation of distance between landmarks
-    leftHypotonus = math.hypot(left_topX - left_botX, left_topY - left_botY)
-    rightHypotonus = math.hypot(right_topX - right_botX, right_topY - right_botY)
+    leftHypotenuse = math.hypot(left_topX - left_botX, left_topY - left_botY)
+    rightHypotenuse = math.hypot(right_topX - right_botX, right_topY - right_botY)
 
-    return leftHypotonus, rightHypotonus
+    return leftHypotenuse, rightHypotenuse
 
 
 #! Detecting smile 
-def smileDetection(img, leftHypotonus, rightHypotonus):
+def smileDetection(img, leftHypotenuse, rightHypotenuse):
     #* Optimal top left and right bottom coordinates for rectangle 
     startPoint = (240, 100)
     endPoint = (410, 350)
@@ -64,7 +64,7 @@ def smileDetection(img, leftHypotonus, rightHypotonus):
     
 
     #* This if loop detects the smile. Change the hardcoded values w.r.t the Z axis.
-    if ((leftHypotonus < 18.5) and (rightHypotonus < 18.5)):
+    if ((leftHypotenuse < 18.5) and (rightHypotenuse < 18.5)):
         cv2.putText(img, "Smile :)", (200, 60), cv2.FONT_HERSHEY_PLAIN, 4, (255,0,0), 2)
 
 

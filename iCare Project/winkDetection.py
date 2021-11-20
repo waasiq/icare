@@ -20,11 +20,43 @@ DIMENTION = (WIDTH, HEIGHT)
 
 #! Defining wink landmarks and hypotenus calculation
 def winkPoints(img, faces):
-    pass
+    #* Face mesh landmarks to analyse
+    left_idList1 = faces[0][159]
+    left_idList2 = faces[0][145]
+    right_idList1 = faces[0][386]
+    right_idList2 = faces[0][374]
+
+    left_topX, left_topY  = left_idList1[1], left_idList1[2]
+    left_botX, left_botY  = left_idList2[1], left_idList2[2]
+    right_topX, right_topY = right_idList1[1], right_idList1[2]
+    right_botX, right_botY = right_idList2[1], right_idList2[2]
+
+    #* Drawing landmarks on the facemesh in green
+    cv2.circle(img, (left_idList1[1],  left_idList1[2]),  3, (0,255,0), 2,  cv2.FILLED)
+    cv2.circle(img, (left_idList2[1],  left_idList2[2]),  3, (0,255,0), 2,  cv2.FILLED)
+    cv2.circle(img, (right_idList1[1], right_idList1[2]), 3, (0,255,0), 2 , cv2.FILLED)
+    cv2.circle(img, (right_idList2[1], right_idList2[2]), 3, (0,255,0), 2 , cv2.FILLED)
+
+    #* Calculation of distance between landmarks
+    leftHypotenuse = math.hypot(left_topX - left_botX, left_topY - left_botY)
+    rightHypotenuse = math.hypot(right_topX - right_botX, right_topY - right_botY)
+
+    return leftHypotenuse, rightHypotenuse
 
 #! Detecting winks
-def winkDetection(img, leftHypotenus, rightHypotenus):
-    pass
+def winkDetection(img, leftHypotenuse, rightHypotenuse):
+    #* Optimal top left and right bottom coordinates for rectangle 
+    startPoint = (240, 100)
+    endPoint = (410, 350)
+    #? These points are debatable.
+    cv2.rectangle(img, startPoint, endPoint, (255,255,0), 2)
+
+    #TODO -> If user is not in that rectangle, don't detect.
+    
+
+    #* This if loop detects the wink. Change the hardcoded values w.r.t the Z axis.
+    if ((leftHypotenuse < 6.0) or (rightHypotenuse < 6.0)):
+        cv2.putText(img, "Wink ;)", (200, 60), cv2.FONT_HERSHEY_PLAIN, 4, (255,0,0), 2)
 
 #! Main function
 def main():
@@ -35,7 +67,7 @@ def main():
 
     while True:
         success, img = cap.read()
-        img, faces = detector.findFaceMesh(img)
+        img, faces = detector.findFaceMesh(img, draw=False)
 
         #* FPS Calculation and Output
         cTime = time.time()
@@ -45,6 +77,7 @@ def main():
 
         leftHypo, rightHypo = winkPoints(img, faces)
         winkDetection(img, leftHypo, rightHypo)
+        # print("Right Hypo: {}   Left Hypo: {}".format(leftHypo, rightHypo))
 
         #* Final Image Output
         resizedImg = cv2.resize(img, DIMENTION, interpolation=cv2.INTER_AREA)
