@@ -6,15 +6,18 @@ TODO Ideas and Problems:
         -> Path 1:
             - Adding a rectangle in the output image. User must be within those rectangle limits. 
             - If user is not inside the rectangle, don't calculate.
+            ! This path was implemented by us. 
         -> Path 2:
             - Detecting real-time distance using a depth/distance detection module or algorithm.
-    * When a new face enters the frame or face exits the frame, program shuts down. Need to fix.
+            ? Next version may contain this implementation too.
     
-    * Maybe when asking for coordinates, user can enter directly to the function arguments.
-    * (mention other problems...)
+    * When a new face enters the frame or face exits the frame, program shuts down. Need to fix.
+    * Make the function boxLimit - line 91 generally accessible by all files and use it in all modules.
+    * i.e wink, sadness, angry module. 
 
-    #! Code the selenium path now.
+    * Code the selenium path now.
 
+    * 3/Dec/21: Smile module has been completed.
 """
 
 import cv2
@@ -76,19 +79,17 @@ def smileDetection(img, leftHypotenuse, rightHypotenuse , points):
     startPoint = (240, 100)
     endPoint = (440, 350)
 
-    #? These points are debatable.
-    cv2.rectangle(img, startPoint, endPoint, (255,255,0), 2)
+    cv2.rectangle(img, startPoint, endPoint, (255,255,0), 2)    
 
-    #* Points contain the points
-    
-
+    #* Face detection within box limits
     if(boxLimit(points)):
         if ((leftHypotenuse < 18) and (rightHypotenuse < 18)):
             cv2.putText(img, "Smile :)", (200, 60), cv2.FONT_HERSHEY_PLAIN, 4, (255,0,0), 2)
     else:
         cv2.putText(img, "BRO?", (200, 60), cv2.FONT_HERSHEY_PLAIN, 4, (255,0,0), 2)    
 
-
+#! Checks if the face corner points are inside the box or not. 
+#! Returns true and face accordingly
 def boxLimit(points):
     left = points[0]
     right = points[2]
