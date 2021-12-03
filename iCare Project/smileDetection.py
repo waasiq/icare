@@ -83,7 +83,7 @@ def smileDetection(img, leftHypotenuse, rightHypotenuse , points):
 
     #* Face detection within box limits
     if(boxLimit(points)):
-        if ((leftHypotenuse < 18) and (rightHypotenuse < 18)):
+        if ((leftHypotenuse < 17.5) and (rightHypotenuse < 17.5)):
             cv2.putText(img, "Smile :)", (200, 60), cv2.FONT_HERSHEY_PLAIN, 4, (255,0,0), 2)
     else:
         cv2.putText(img, "BRO?", (200, 60), cv2.FONT_HERSHEY_PLAIN, 4, (255,0,0), 2)    
