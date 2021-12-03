@@ -64,8 +64,8 @@ def main():
     width = 1180
     height = 720
     dim = (width,height)
-    cap = cv2.VideoCapture("your video path")
-    # cap = cv2.VideoCapture(0) # live cam
+    #cap = cv2.VideoCapture("your video path")
+    cap = cv2.VideoCapture(0) # live cam
     pTime = 0
 
     detector = FaceDetector() #* Calling the object
