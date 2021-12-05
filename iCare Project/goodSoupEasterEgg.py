@@ -38,7 +38,6 @@ def goodSoupDetection(img, landmarkList):
         if lenght < 15:
             #! Selenium action will happen here.
             cv2.circle(img, (cx, cy), 10, (0,0,255), cv2.FILLED)
-
     
 
 def main():
