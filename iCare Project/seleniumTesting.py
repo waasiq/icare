@@ -14,9 +14,6 @@ ANGER_PAGE = ""
 GOOD_SOUP = "https://www.youtube.com/watch?v=gkXzeZ0KE5Q"
 FINGER_FLIP = "https://www.youtube.com/watch?v=XtDk7yc4VV8"
 
-driver = webdriver.Chrome()
-driver.maximize_window()
-
 
 def good_soup(driver):
     driver.get(GOOD_SOUP)
@@ -43,7 +40,10 @@ def finger_flip(driver):
 
 
 def main():
-    pass
+    driver = webdriver.Chrome()
+    driver.maximize_window()
+
+    finger_flip(driver)
 
 
 if __name__ == "__main__":
