@@ -1,7 +1,10 @@
 """
-!                               -----   Sadness Detection Module  -----
+!                               -----   Anger Detection Module  -----
 
-# TODO: Wait for Busra <3 uWu 
+TODO Ideas:
+    * Get the eyebrows of the person and the mouth expressions.
+    * Run on the example video of subjects. 
+    * May need more points than required.
 """
 
 import cv2
@@ -17,19 +20,33 @@ HEIGHT = 720
 DIMENTION = (WIDTH, HEIGHT)
 
 #! Defining smiling landmarks and hypotenus calculation
-def sadnessPoints(img, faces):
+def smilingPoints(img, faces):
     #* Face mesh landmarks to analyse
-    left_idList1 = faces[0][202]
+    left_idList1 = faces[0][216]
     left_idList2 = faces[0][184]
-    right_idList1 = faces[0][422]
+    right_idList1 = faces[0][436]
     right_idList2 = faces[0][408]
 
-    left_topX, left_topY  = left_idList1[1], left_idList1[2] #! Send to Function 
-    left_botX, left_botY  = left_idList2[1], left_idList2[2]
-    right_topX, right_topY = right_idList1[1], right_idList1[2] #! Send to function
-    right_botX, right_botY = right_idList2[1], right_idList2[2]     
+    #* Left corner and right corner are points for detecting face inside box
+    left_corner = faces[0][137]
+    left_cornerX, left_cornerY = left_corner[1], left_corner[2]
+    
+    right_corner = faces[0][366]
+    right_cornerX, right_cornerY = right_corner[1], right_corner[2]
+    points = [left_cornerX, left_cornerY, right_cornerX , right_cornerY]
+    
+    cv2.circle(img, (left_corner[1], left_corner[2]), 3, (0,255,0), 2 , cv2.FILLED)
+    cv2.circle(img, (right_corner[1], right_corner[2]), 3, (0,255,0), 2 , cv2.FILLED)
 
-    #* Drawing landmarks on the facemesh in green
+
+    #* Smile detection points
+    left_topX, left_topY  = left_idList1[1], left_idList1[2] 
+    left_botX, left_botY  = left_idList2[1], left_idList2[2]
+    right_topX, right_topY = right_idList1[1], right_idList1[2]
+    right_botX, right_botY = right_idList2[1], right_idList2[2] 
+    
+
+    #* Drawing smile landmarks on the facemesh in green
     cv2.circle(img, (left_idList1[1],  left_idList1[2]),  3, (0,255,0), 2,  cv2.FILLED)
     cv2.circle(img, (left_idList2[1],  left_idList2[2]),  3, (0,255,0), 2,  cv2.FILLED)
     cv2.circle(img, (right_idList1[1], right_idList1[2]), 3, (0,255,0), 2 , cv2.FILLED)
@@ -39,33 +56,35 @@ def sadnessPoints(img, faces):
     leftHypotenuse = math.hypot(left_topX - left_botX, left_topY - left_botY)
     rightHypotenuse = math.hypot(right_topX - right_botX, right_topY - right_botY)
     
-    #* Points for box calculation
-    points = [left_topX, left_topY, right_topX , right_topY]
 
     return leftHypotenuse, rightHypotenuse, points
 
 
 #! Detecting smile 
-def sadnessDetection(img, leftHypotenuse, rightHypotenuse , points):
+def smileDetection(img, leftHypotenuse, rightHypotenuse , points):
     #* Optimal top left and right bottom coordinates for rectangle 
     startPoint = (240, 100)
     endPoint = (440, 350)
 
-    #? These points are debatable.
-    cv2.rectangle(img, startPoint, endPoint, (255,255,0), 2)
+    cv2.rectangle(img, startPoint, endPoint, (255,255,0), 2)    
 
-    
-    #TODO -> If user is not in that rectangle, don't detect. 
-    #* Points contain the points
-    left_topX = points[0] #* 225 = X
-    right_topX = points[2]
-
-    if (left_topX >  255 and right_topX < 455):
+    #* Face detection within box limits
+    if(boxLimit(points)):
         if ((leftHypotenuse < 17.5) and (rightHypotenuse < 17.5)):
-            cv2.putText(img, "Sad :(", (200, 60), cv2.FONT_HERSHEY_PLAIN, 4, (255,0,0), 2)
+            cv2.putText(img, "Why so angry? ", (200, 60), cv2.FONT_HERSHEY_PLAIN, 4, (255,0,0), 2)
     else:
-         cv2.putText(img, "YO YO?", (200, 60), cv2.FONT_HERSHEY_PLAIN, 4, (255,0,0), 2)    
+        cv2.putText(img, "BRO?", (200, 60), cv2.FONT_HERSHEY_PLAIN, 4, (255,0,0), 2)    
 
+#! Checks if the face corner points are inside the box or not. 
+#! Returns true and face accordingly
+def boxLimit(points):
+    left = points[0]
+    right = points[2]
+
+    if (left > 235 and right < 435):
+        return True
+    else: 
+        return False
 
 #! Main function
 def main():
@@ -84,8 +103,8 @@ def main():
         pTime = cTime
         cv2.putText(img, f'FPS: {int(fps)}', (20,70), cv2.FONT_HERSHEY_PLAIN, 2, (0,0,255), 2)
 
-        leftHypo, rightHypo , points = sadnessPoints(img, faces)
-        sadnessDetection(img, leftHypo, rightHypo , points)
+        leftHypo, rightHypo , points = smilingPoints(img, faces)
+        smileDetection(img, leftHypo, rightHypo , points)
 
         #* Final Image Output
         resizedImg = cv2.resize(img, DIMENTION, interpolation=cv2.INTER_AREA)
