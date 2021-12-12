@@ -10,6 +10,8 @@ import mediapipe as mp
 import time
 import math
 from Modules.HandTrackingModule import handDetector
+from seleniumModule import finger_flip
+from selenium import webdriver
 
 #! Global Variables
 #* Default Dimensions for Webcam: 1280 x 720 / Dimensions for Test Videos:  700 x 925
@@ -32,17 +34,19 @@ def fingerFlipDetection(img, landmarkList):
         lenght3 = math.hypot(x4 - x1, y3 - y1)
 
         if lenght1 > 100 and lenght2 > 100 and lenght3>100:
-            #! Selenium action will happen here.
+            #! Selenium action will happen here. I guess
             cv2.circle(img, (x1, y1), 10, (0,0,255), cv2.FILLED)
+            driver = webdriver.Chrome()
+            driver.maximize_window()
+            finger_flip(driver=driver)
 
 def main():
-    pTime = 0
     cap = cv2.VideoCapture(0)
     detector = handDetector(maxHands=2, detectionCon=0.7)
 
     while True:
         success, img = cap.read()
-        detector.findHands(img) #TODO = change draw when necessary.
+        detector.findHands(img, draw=False) #TODO = change draw when necessary.
 
         landmarkList = detector.findPosition(img)
         fingerFlipDetection(img, landmarkList)
