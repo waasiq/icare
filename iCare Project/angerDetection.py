@@ -1,10 +1,5 @@
 """
 !                               -----   Anger Detection Module  -----
-
-TODO Ideas:
-    * Get the eyebrows of the person and the mouth expressions.
-    * Run on the example video of subjects. 
-    * May need more points than required.
 """
 
 import cv2
@@ -19,13 +14,13 @@ WIDTH = 1280
 HEIGHT = 720
 DIMENTION = (WIDTH, HEIGHT)
 
-#! Defining smiling landmarks and hypotenus calculation
-def smilingPoints(img, faces):
+#! Defining anger landmarks and hypotenus calculation
+def angerPoints(img, faces):
     #* Face mesh landmarks to analyse
-    left_idList1 = faces[0][337]
-    left_idList2 = faces[0][336]
-    right_idList1 = faces[0][107]
-    right_idList2 = faces[0][108]
+    left_idList1 = faces[0][108]
+    left_idList2 = faces[0][107]
+    right_idList1 = faces[0][337]
+    right_idList2 = faces[0][336]
 
     #* Left corner and right corner are points for detecting face inside box
     left_corner = faces[0][137]
@@ -35,14 +30,14 @@ def smilingPoints(img, faces):
     right_cornerX, right_cornerY = right_corner[1], right_corner[2]
     points = [left_cornerX, left_cornerY, right_cornerX , right_cornerY]
 
-    #* Smile detection points
+    #* Anger detection points
     left_topX, left_topY  = left_idList1[1], left_idList1[2] 
     left_botX, left_botY  = left_idList2[1], left_idList2[2]
     right_topX, right_topY = right_idList1[1], right_idList1[2]
     right_botX, right_botY = right_idList2[1], right_idList2[2] 
     
 
-    #* Drawing smile landmarks on the facemesh in green
+    #* Drawing anger landmarks on the facemesh in green
     cv2.circle(img, (left_idList1[1],  left_idList1[2]),  3, (0,255,0), 2,  cv2.FILLED)
     cv2.circle(img, (left_idList2[1],  left_idList2[2]),  3, (0,255,0), 2,  cv2.FILLED)
     cv2.circle(img, (right_idList1[1], right_idList1[2]), 3, (0,255,0), 2 , cv2.FILLED)
@@ -56,23 +51,20 @@ def smilingPoints(img, faces):
     return leftHypotenuse, rightHypotenuse, points
 
 
-#! Detecting smile 
-def smileDetection(img, leftHypotenuse, rightHypotenuse , points):
+#! Detecting anger 
+def angerDetection(img, leftHypotenuse, rightHypotenuse , points):
     #* Optimal top left and right bottom coordinates for rectangle 
     startPoint = (240, 100)
     endPoint = (440, 350)
 
     cv2.rectangle(img, startPoint, endPoint, (255,255,0), 2)    
 
-    #print(rightHypotenuse)
-    print(leftHypotenuse)
-    
     #* Face detection within box limits
     if(boxLimit(points)):
-        if ((leftHypotenuse < 17)):
-            cv2.putText(img, "Why so angry? ", (200, 60), cv2.FONT_HERSHEY_PLAIN, 4, (255,0,0), 2)
+        if ((leftHypotenuse > 22.9) and (rightHypotenuse > 22.9)):
+            cv2.putText(img, "Why so angry? ", (170, 60), cv2.FONT_HERSHEY_PLAIN, 3, (255,0,0), 2)
     else:
-           cv2.putText(img, "BRO?", (200, 60), cv2.FONT_HERSHEY_PLAIN, 4, (255,0,0), 2)    
+           cv2.putText(img, "Face not inside", (160, 60), cv2.FONT_HERSHEY_PLAIN, 3, (255,0,0), 2)    
 
 
 #! Checks if the face corner points are inside the box or not. 
@@ -101,10 +93,10 @@ def main():
         cTime = time.time()
         fps = 1/(cTime-pTime)
         pTime = cTime
-        cv2.putText(img, f'FPS: {int(fps)}', (20,70), cv2.FONT_HERSHEY_PLAIN, 2, (0,0,255), 2)
+        #cv2.putText(img, f'FPS: {int(fps)}', (20,70), cv2.FONT_HERSHEY_PLAIN, 2, (0,0,255), 2)
 
-        leftHypo, rightHypo , points = smilingPoints(img, faces)
-        smileDetection(img, leftHypo, rightHypo , points)
+        leftHypo, rightHypo , points = angerPoints(img, faces)
+        angerDetection(img, leftHypo, rightHypo , points)
 
         #* Final Image Output
         resizedImg = cv2.resize(img, DIMENTION, interpolation=cv2.INTER_AREA)

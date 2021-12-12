@@ -60,9 +60,6 @@ def shockDetection(img, leftHypotenuse, rightHypotenuse , points):
     endPoint = (440, 350)
 
     cv2.rectangle(img, startPoint, endPoint, (255,255,0), 2)    
-
-    #print(rightHypotenuse)
-    print(leftHypotenuse)
     
     #* Face detection within box limits
     if(boxLimit(points)):
@@ -97,7 +94,7 @@ def main():
         cTime = time.time()
         fps = 1/(cTime-pTime)
         pTime = cTime
-        cv2.putText(img, f'FPS: {int(fps)}', (20,70), cv2.FONT_HERSHEY_PLAIN, 2, (0,0,255), 2)
+        #cv2.putText(img, f'FPS: {int(fps)}', (20,70), cv2.FONT_HERSHEY_PLAIN, 2, (0,0,255), 2)
 
         leftHypo, rightHypo , points = shockPoints(img, faces)
         shockDetection(img, leftHypo, rightHypo , points)

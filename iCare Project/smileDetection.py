@@ -40,19 +40,19 @@ def smilingPoints(img, faces):
     right_idList1 = faces[0][436]
     right_idList2 = faces[0][408]
 
-    #* Left corner and right corner are points for detecting face inside box
+    #! Left corner and right corner are points for detecting face inside box
     left_corner = faces[0][137]
-    left_cornerX, left_cornerY = left_corner[1], left_corner[2]
-    
+    left_cornerX, left_cornerY = left_corner[1], left_corner[2]    
     right_corner = faces[0][366]
     right_cornerX, right_cornerY = right_corner[1], right_corner[2]
+   
     points = [left_cornerX, left_cornerY, right_cornerX , right_cornerY]
     
     cv2.circle(img, (left_corner[1], left_corner[2]), 3, (0,255,0), 2 , cv2.FILLED)
     cv2.circle(img, (right_corner[1], right_corner[2]), 3, (0,255,0), 2 , cv2.FILLED)
 
 
-    #* Smile detection points
+    #! Smile detection points
     left_topX, left_topY  = left_idList1[1], left_idList1[2] 
     left_botX, left_botY  = left_idList2[1], left_idList2[2]
     right_topX, right_topY = right_idList1[1], right_idList1[2]
@@ -114,7 +114,7 @@ def main():
         cTime = time.time()
         fps = 1/(cTime-pTime)
         pTime = cTime
-        cv2.putText(img, f'FPS: {int(fps)}', (20,70), cv2.FONT_HERSHEY_PLAIN, 2, (0,0,255), 2)
+        #cv2.putText(img, f'FPS: {int(fps)}', (20,70), cv2.FONT_HERSHEY_PLAIN, 2, (0,0,255), 2)
 
         leftHypo, rightHypo , points = smilingPoints(img, faces)
         smileDetection(img, leftHypo, rightHypo , points)
