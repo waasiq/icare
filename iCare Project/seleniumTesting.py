@@ -21,7 +21,7 @@ def good_soup(driver):
 
     driver.find_element_by_xpath('//*[@id="content"]/div[2]/div[5]/div[2]/ytd-button-renderer[2]/a').click()
 
-    time.sleep(7)
+    time.sleep(8)
 
     driver.close()
     print("\n\nGood soup.")
@@ -43,7 +43,7 @@ def main():
     driver = webdriver.Chrome()
     driver.maximize_window()
 
-    finger_flip(driver)
+    good_soup(driver)
 
 
 if __name__ == "__main__":
