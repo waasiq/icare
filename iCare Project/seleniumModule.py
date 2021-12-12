@@ -18,6 +18,67 @@ FINGER_FLIP = "https://www.youtube.com/watch?v=XtDk7yc4VV8"
 driver = webdriver.Chrome()
 driver.maximize_window()
 
+    #*-> 1. Anger
+    #*-> 2. Sadness
+    #*-> 3. Smile
+    #*-> 4. Shock
+    #*-> 5. Wink
+
+def anger(driver):
+    driver.get(ANGER_PAGE)
+    time.sleep(4)
+
+    driver.find_element_by_xpath('//*[@id="content"]/div[2]/div[5]/div[2]/ytd-button-renderer[2]/a').click()
+
+    time.sleep(8)
+
+    driver.close()
+    print("\n\nGood soup.")
+
+def sadness(driver):
+    driver.get(SADNESS_PAGE)
+    time.sleep(4)
+
+    driver.find_element_by_xpath('//*[@id="content"]/div[2]/div[5]/div[2]/ytd-button-renderer[2]/a').click()
+
+    time.sleep(8)
+
+    driver.close()
+    print("\n\nGood soup.")
+    
+def smile(driver):
+    driver.get(SMILE_PAGE)
+    time.sleep(4)
+
+    driver.find_element_by_xpath('//*[@id="content"]/div[2]/div[5]/div[2]/ytd-button-renderer[2]/a').click()
+
+    time.sleep(8)
+
+    driver.close()
+    print("\n\nGood soup.")
+
+def shock(driver):
+    driver.get(SHOCK_PAGE)
+    time.sleep(4)
+
+    driver.find_element_by_xpath('//*[@id="content"]/div[2]/div[5]/div[2]/ytd-button-renderer[2]/a').click()
+
+    time.sleep(8)
+
+    driver.close()
+    print("\n\nGood soup.")
+
+def wink(driver):
+    driver.get(WINK_PAGE)
+    time.sleep(4)
+
+    driver.find_element_by_xpath('//*[@id="content"]/div[2]/div[5]/div[2]/ytd-button-renderer[2]/a').click()
+
+    time.sleep(8)
+
+    driver.close()
+    print("\n\nGood soup.")
+
 def good_soup(driver):
     driver.get(GOOD_SOUP)
     time.sleep(4)
