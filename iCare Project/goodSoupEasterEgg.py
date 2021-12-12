@@ -10,6 +10,8 @@ import mediapipe as mp
 import time
 import math
 from Modules.HandTrackingModule import handDetector
+from selenium import webdriver
+from seleniumModule import good_soup
 
 #! Global Variables
 #* Default Dimensions for Webcam: 1280 x 720 / Dimensions for Test Videos:  700 x 925
@@ -38,6 +40,9 @@ def goodSoupDetection(img, landmarkList):
         if lenght < 15:
             #! Selenium action will happen here.
             cv2.circle(img, (cx, cy), 10, (0,0,255), cv2.FILLED)
+            driver = webdriver.Chrome()
+            driver.maximize_window()
+            good_soup(driver=driver)
     
 
 def main():
