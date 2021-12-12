@@ -38,10 +38,10 @@ def angerPoints(img, faces):
     
 
     #* Drawing anger landmarks on the facemesh in green
-    cv2.circle(img, (left_idList1[1],  left_idList1[2]),  3, (0,255,0), 2,  cv2.FILLED)
-    cv2.circle(img, (left_idList2[1],  left_idList2[2]),  3, (0,255,0), 2,  cv2.FILLED)
-    cv2.circle(img, (right_idList1[1], right_idList1[2]), 3, (0,255,0), 2 , cv2.FILLED)
-    cv2.circle(img, (right_idList2[1], right_idList2[2]), 3, (0,255,0), 2 , cv2.FILLED)
+    #cv2.circle(img, (left_idList1[1],  left_idList1[2]),  3, (0,255,0), 2,  cv2.FILLED)
+    #cv2.circle(img, (left_idList2[1],  left_idList2[2]),  3, (0,255,0), 2,  cv2.FILLED)
+    #cv2.circle(img, (right_idList1[1], right_idList1[2]), 3, (0,255,0), 2 , cv2.FILLED)
+    #cv2.circle(img, (right_idList2[1], right_idList2[2]), 3, (0,255,0), 2 , cv2.FILLED)
 
     #* Calculation of distance between landmarks
     leftHypotenuse = math.hypot(left_topX - left_botX, left_topY - left_botY)
@@ -59,9 +59,11 @@ def angerDetection(img, leftHypotenuse, rightHypotenuse , points):
 
     cv2.rectangle(img, startPoint, endPoint, (255,255,0), 2)    
 
+    print('Left hypotenus: ' + str(leftHypotenuse))
+
     #* Face detection within box limits
     if(boxLimit(points)):
-        if ((leftHypotenuse > 22.9) and (rightHypotenuse > 22.9)):
+        if ((leftHypotenuse > 20) and (rightHypotenuse > 20)):
             cv2.putText(img, "Why so angry? ", (170, 60), cv2.FONT_HERSHEY_PLAIN, 3, (255,0,0), 2)
     else:
            cv2.putText(img, "Face not inside", (160, 60), cv2.FONT_HERSHEY_PLAIN, 3, (255,0,0), 2)    

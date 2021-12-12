@@ -19,10 +19,10 @@ DIMENTION = (WIDTH, HEIGHT)
 #! Defining smiling landmarks and hypotenus calculation
 def shockPoints(img, faces):
     #* Face mesh landmarks to analyse
-    left_idList1 = faces[0][337]
-    left_idList2 = faces[0][336]
-    right_idList1 = faces[0][107]
-    right_idList2 = faces[0][108]
+    left_idList1 = faces[0][103]
+    left_idList2 = faces[0][52]
+    right_idList1 = faces[0][282]
+    right_idList2 = faces[0][333]
 
     #* Left corner and right corner are points for detecting face inside box
     left_corner = faces[0][137]
@@ -40,10 +40,10 @@ def shockPoints(img, faces):
     
 
     #* Drawing smile landmarks on the facemesh in green
-    cv2.circle(img, (left_idList1[1],  left_idList1[2]),  3, (0,255,0), 2,  cv2.FILLED)
-    cv2.circle(img, (left_idList2[1],  left_idList2[2]),  3, (0,255,0), 2,  cv2.FILLED)
-    cv2.circle(img, (right_idList1[1], right_idList1[2]), 3, (0,255,0), 2 , cv2.FILLED)
-    cv2.circle(img, (right_idList2[1], right_idList2[2]), 3, (0,255,0), 2 , cv2.FILLED)
+    #cv2.circle(img, (left_idList1[1],  left_idList1[2]),  3, (0,255,0), 2,  cv2.FILLED)
+    #cv2.circle(img, (left_idList2[1],  left_idList2[2]),  3, (0,255,0), 2,  cv2.FILLED)
+    #cv2.circle(img, (right_idList1[1], right_idList1[2]), 3, (0,255,0), 2 , cv2.FILLED)
+    #cv2.circle(img, (right_idList2[1], right_idList2[2]), 3, (0,255,0), 2 , cv2.FILLED)
 
     #* Calculation of distance between landmarks
     leftHypotenuse = math.hypot(left_topX - left_botX, left_topY - left_botY)
@@ -61,9 +61,11 @@ def shockDetection(img, leftHypotenuse, rightHypotenuse , points):
 
     cv2.rectangle(img, startPoint, endPoint, (255,255,0), 2)    
     
+    print('Lefthyptonus: ' + str(leftHypotenuse))
+
     #* Face detection within box limits
     if(boxLimit(points)):
-        if ((leftHypotenuse < 17)):
+        if ((leftHypotenuse < 29)):
             cv2.putText(img, "Oh no", (200, 60), cv2.FONT_HERSHEY_PLAIN, 4, (255,0,0), 2)
     else:
            cv2.putText(img, "BRO?", (200, 60), cv2.FONT_HERSHEY_PLAIN, 4, (255,0,0), 2)    

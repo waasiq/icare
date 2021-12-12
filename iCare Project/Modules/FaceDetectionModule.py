@@ -75,13 +75,7 @@ def main():
 
         img, bboxs = detector.findFaces(img) #* returning 2 values from findFaces()
         print(bboxs)
-
-        #* FPS calculation
-        cTime = time.time()
-        fps = 1/(cTime-pTime)
-        pTime = cTime
-        cv2.putText(img, f'FPS: {int(fps)}', (20,70), cv2.FONT_HERSHEY_PLAIN, 3, (255,0,0), 2)
-
+        
         #* Resized image
         resized = cv2.resize(img, dim, interpolation=cv2.INTER_AREA)
         cv2.imshow("Image", resized)

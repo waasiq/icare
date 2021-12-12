@@ -63,10 +63,12 @@ def winkDetection(img, leftHypotenuse, rightHypotenuse, points):
 
     cv2.rectangle(img, startPoint, endPoint, (255,255,0), 2)
 
+    print('Lefthypotenus: ' + str(leftHypotenuse))
+
     #* Face detection within box limits
     #* This if loop detects the wink. Change the hardcoded values w.r.t the Z axis.
     if(boxLimit(points)):
-        if ((leftHypotenuse < 6.0) or (rightHypotenuse < 6.0)):
+        if ((leftHypotenuse < 8.0) or (rightHypotenuse < 8.0)):
             cv2.putText(img, "Wink ;)", (200, 60), cv2.FONT_HERSHEY_PLAIN, 4, (255,0,0), 2)
     else:
         cv2.putText(img, "BRO?", (200, 60), cv2.FONT_HERSHEY_PLAIN, 4, (255,0,0), 2)  

@@ -7,10 +7,11 @@ from selenium import webdriver
 # from selenium.webdriver.support.wait import WebDriverWait
 # from selenium.webdriver.support import expected_conditions as EC
 
-SADNESS_PAGE = ""
-SMILE_PAGE = ""
-WINK_PAGE = ""
-ANGER_PAGE = ""
+SADNESS_PAGE = "https://www.youtube.com/watch?v=ur48jVNNlKk&aby"
+SMILE_PAGE = "https://www.youtube.com/watch?v=ht9YrIcr0ck&ab_channel=Johnwaller"
+WINK_PAGE = "https://www.youtube.com/watch?v=-cC_UrCFg5w&ab_channel=Danapan"
+ANGER_PAGE = "https://www.youtube.com/watch?v=lFcSrYw-ARY" 
+SHOCK_PAGE = "https://www.youtube.com/watch?v=Cm_OZgjXhVs&ab_channel=TheOutcome"
 GOOD_SOUP = "https://www.youtube.com/watch?v=gkXzeZ0KE5Q"
 FINGER_FLIP = "https://www.youtube.com/watch?v=XtDk7yc4VV8"
 
