@@ -22,10 +22,10 @@ DIMENTION = (WIDTH, HEIGHT)
 #! Defining smiling landmarks and hypotenus calculation
 def smilingPoints(img, faces):
     #* Face mesh landmarks to analyse
-    left_idList1 = faces[0][216]
-    left_idList2 = faces[0][184]
-    right_idList1 = faces[0][436]
-    right_idList2 = faces[0][408]
+    left_idList1 = faces[0][337]
+    left_idList2 = faces[0][336]
+    right_idList1 = faces[0][107]
+    right_idList2 = faces[0][108]
 
     #* Left corner and right corner are points for detecting face inside box
     left_corner = faces[0][137]
@@ -34,10 +34,6 @@ def smilingPoints(img, faces):
     right_corner = faces[0][366]
     right_cornerX, right_cornerY = right_corner[1], right_corner[2]
     points = [left_cornerX, left_cornerY, right_cornerX , right_cornerY]
-    
-    cv2.circle(img, (left_corner[1], left_corner[2]), 3, (0,255,0), 2 , cv2.FILLED)
-    cv2.circle(img, (right_corner[1], right_corner[2]), 3, (0,255,0), 2 , cv2.FILLED)
-
 
     #* Smile detection points
     left_topX, left_topY  = left_idList1[1], left_idList1[2] 
@@ -68,12 +64,16 @@ def smileDetection(img, leftHypotenuse, rightHypotenuse , points):
 
     cv2.rectangle(img, startPoint, endPoint, (255,255,0), 2)    
 
+    #print(rightHypotenuse)
+    print(leftHypotenuse)
+    
     #* Face detection within box limits
     if(boxLimit(points)):
-        if ((leftHypotenuse < 17.5) and (rightHypotenuse < 17.5)):
+        if ((leftHypotenuse < 17)):
             cv2.putText(img, "Why so angry? ", (200, 60), cv2.FONT_HERSHEY_PLAIN, 4, (255,0,0), 2)
     else:
-        cv2.putText(img, "BRO?", (200, 60), cv2.FONT_HERSHEY_PLAIN, 4, (255,0,0), 2)    
+           cv2.putText(img, "BRO?", (200, 60), cv2.FONT_HERSHEY_PLAIN, 4, (255,0,0), 2)    
+
 
 #! Checks if the face corner points are inside the box or not. 
 #! Returns true and face accordingly
@@ -90,7 +90,7 @@ def boxLimit(points):
 def main():
     pTime = 0
     cap = cv2.VideoCapture(0)
-    # cap = cv2.VideoCapture('videos/2.mp4')
+    #cap = cv2.VideoCapture('videos/anger.mp4')
     detector = FaceMeshDetector()
 
     while True:
