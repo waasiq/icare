@@ -15,7 +15,8 @@ pip install mediapipe
 ```
 
 ## Usage
-Run the iCare\emotions.py for starting the detection.
+Run the iCareProject\emotions.py for starting the detection.
+Individual modules can also be run using the specific module name.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
