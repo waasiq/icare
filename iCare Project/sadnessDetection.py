@@ -8,7 +8,6 @@
 
 import cv2
 import mediapipe as mp
-import time
 import math
 from Modules.FaceMeshModule import FaceMeshDetector 
 
@@ -34,8 +33,8 @@ def sadnessPoints(img, faces):
    
     points = [left_cornerX, left_cornerY, right_cornerX , right_cornerY]
     
-    cv2.circle(img, (left_corner[1], left_corner[2]), 3, (0,255,0), 2 , cv2.FILLED)
-    cv2.circle(img, (right_corner[1], right_corner[2]), 3, (0,255,0), 2 , cv2.FILLED)
+    #cv2.circle(img, (left_corner[1], left_corner[2]), 3, (0,255,0), 2 , cv2.FILLED)
+    #cv2.circle(img, (right_corner[1], right_corner[2]), 3, (0,255,0), 2 , cv2.FILLED)
 
 
     #! Smile detection points
@@ -99,13 +98,7 @@ def main():
     while True:
         success, img = cap.read()
         img, faces = detector.findFaceMesh(img)
-
-        #* FPS Calculation and Output
-        cTime = time.time()
-        fps = 1/(cTime-pTime)
-        pTime = cTime
-        #cv2.putText(img, f'FPS: {int(fps)}', (20,70), cv2.FONT_HERSHEY_PLAIN, 2, (0,0,255), 2)
-
+        
         leftHypo, rightHypo , points = sadnessPoints(img, faces)
         sadnessDetection(img, leftHypo, rightHypo , points)
 

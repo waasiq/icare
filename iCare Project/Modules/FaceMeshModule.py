@@ -1,9 +1,8 @@
 """
-! Face Mesh Module
+!                        ----   Face Mesh Module  ----
 """
 import cv2
 import mediapipe as mp
-import time
 
 #! Module for detecting 468 different points in the face 
 class FaceMeshDetector():
@@ -62,12 +61,6 @@ def main():
             print("Detected face count: {}".format(len(faces))) # detected face counts
             # print(faces[0]) # prints all the 468 landmark 
  
-        #* FPS
-        cTime = time.time()
-        fps = 1/(cTime-pTime)
-        pTime = cTime
-        cv2.putText(img, f'FPS: {int(fps)}', (20,70), cv2.FONT_HERSHEY_PLAIN, 3, (255,0,0), 3)
-
         resized = cv2.resize(img, dim, interpolation=cv2.INTER_AREA)
         cv2.imshow("Image", resized)
         # cv2.imshow("Image", img)

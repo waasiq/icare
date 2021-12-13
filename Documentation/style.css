@@ -1,0 +1,184 @@
+* {
+	padding:0;
+	margin:0;	
+}
+
+html {
+	box-sizing: border-box;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 20px;
+	text-rendering: optimizeLegibility;
+	scroll-behavior: smooth;
+}
+
+/************************************************  
+------>  Navigation
+************************************************/
+
+.navigation-bar {
+    background-color: #C83200;
+    height: auto;
+    left: 0;
+    padding: 0 30px;
+    position: fixed;
+    top: 0;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    width: 100%;
+    z-index: 1000;
+}
+
+.navigation-bar img{
+	height: 20px;
+	width: 100%;
+}
+
+.navigation-bar.active {
+    background-color: #fff;
+    -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navigation-bar.active .navigation-nav-link {
+    color: #111;
+}
+
+.navigation-bar.active .navigation-nav-link:hover {
+    background-color: #eee;
+}
+
+.navigation-nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navigation-nav-link {
+    color: #fff;
+    display: inline-block;
+    font-size: 14px;
+    font-weight:  bold;
+    padding: 12px 18px;
+    text-decoration: none;
+    text-transform: uppercase;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+
+.navigation-nav-link:hover {
+    text-decoration: none;
+}
+
+.navigation-toggle {
+    border-radius: 4px;
+    border: 1px solid #111;
+    cursor: pointer;
+    display: none;
+    height: 35px;
+    right: 18px;
+    position: absolute;
+    top: 8px;
+    width: 40px;
+}
+
+.navigation-toggle > * {
+    background-color: #111;
+    border-radius: 4px;
+    height: 3px;
+    left: 5px;
+    position: absolute;
+    width: 27.5px;
+}
+
+
+.navigation-toggle span:nth-child(2) {
+    top: 50%;
+    -webkit-transform: translateY(-60%);
+    transform: translateY(-60%);
+}
+
+
+/************************************************  
+------> General elements stylization
+************************************************/
+
+section{
+	margin:50px 50px;
+}
+
+p{
+	margin-top: 7px;
+}
+
+h3 {
+	padding: 10px 0px;
+}
+
+
+/************************************************  
+------> Introduction
+************************************************/
+
+
+.intro {
+	padding-top: 20px
+}
+
+.intro p{
+	padding: 20px 20px;
+}
+
+.intro img{
+	margin-left: 280px;
+	width:80%;
+	height: 280px;
+
+}
+
+/************************************************  
+-----> Contents
+************************************************/
+
+.contents{
+	background: #f9f9f9 none repeat scroll;
+	border:1.5px solid #aaa;
+	padding: 20px;	
+	width: 30%;
+}
+
+.contents ul{
+	padding:20px 20px;
+	list-style: decimal;
+}
+
+.contents ul li{
+	padding: 2px 2px;
+}
+.contents ul li a{
+	color:darkblue;
+	text-decoration: none;
+}
+
+/************************************************  
+-----> Working
+************************************************/
+
+.working span{
+	padding-left: 40px;
+}
+
+.micro-expression{
+	padding-top:35px;	
+	margin-left:150px;
+}
+
+.micro-expression img{
+	width:40%;
+	padding:2px 8px;
+}
+
+.structure{
+	margin-top: 35px;
+	margin-left:475px;
+	height: 30%;
+}
