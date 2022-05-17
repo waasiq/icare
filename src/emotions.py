@@ -1,7 +1,5 @@
 """
 !                               -----   emotions.py ----- 
-! Try sleep before the truth statement
-! SADNESS DOENST WORK CORRECTLY 
 """
 
 import cv2
@@ -45,13 +43,13 @@ def detection(img, faces):
     #*-> 3. Smile
     #*-> 4. Shock
     #*-> 5. Wink
- 
+
     #* Face detection within box limits
     if(boxLimit(points)):        
         if ((angerLeftHypotenus > 19.9) and (angerRightHypotenus > 19.9)):
             cv2.putText(img, "Anger >.<", (190, 60), cv2.FONT_HERSHEY_PLAIN, 3, (255,0,0), 2)
             #w.open("https://www.youtube.com/watch?v=lFcSrYw-ARY")
-        elif ((sadnessLeftHypotenus > 22.5) and (sadnessLeftHypotenus < 25)):            
+        elif ((sadnessLeftHypotenus > 23.5) and (sadnessLeftHypotenus < 25.5)):            
             cv2.putText(img, "Sad :(", (200, 60), cv2.FONT_HERSHEY_PLAIN, 3, (255,0,0), 2)
         elif ((smileLeftHypotenus < 17.5) and (smileRightHypotenus < 17.5)):
             cv2.putText(img, "Smile :)", (200, 60), cv2.FONT_HERSHEY_PLAIN, 3, (255,0,0), 2)

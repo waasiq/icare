@@ -29,8 +29,8 @@ def winkPoints(img, faces):
     right_cornerX, right_cornerY = right_corner[1], right_corner[2]
     points = [left_cornerX, left_cornerY, right_cornerX , right_cornerY]
     
-    cv2.circle(img, (left_corner[1], left_corner[2]), 3, (0,255,0), 2 , cv2.FILLED)
-    cv2.circle(img, (right_corner[1], right_corner[2]), 3, (0,255,0), 2 , cv2.FILLED)
+    #cv2.circle(img, (left_corner[1], left_corner[2]), 3, (0,255,0), 2 , cv2.FILLED)
+    #cv2.circle(img, (right_corner[1], right_corner[2]), 3, (0,255,0), 2 , cv2.FILLED)
 
     #* Face mesh landmarks to analyse
     left_idList1 = faces[0][159]

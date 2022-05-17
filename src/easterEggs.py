@@ -10,7 +10,7 @@ def main():
         detector.findHands(img, draw=False) #TODO = change draw when necessary.
 
         landmarkList = detector.findPosition(img)
-        fingerFlipDetection(img, landmarkList)
+        #fingerFlipDetection(img, landmarkList)
         goodSoupDetection(img, landmarkList)
 
         cv2.imshow('Image', img)
